@@ -25,15 +25,10 @@ jobs:
           distribution: 'adopt'
           cache: maven
 
-      - name: Ensure upload directory exists
-        run: mkdir -p /home/runner/work/spring-boot-with-docker/UploadDir
-
       - name: Build Application JAR
-        working-directory: /home/runner/work/spring-boot-with-docker/spring-boot-with-docker
         run: mvn clean package
 
       - name: Docker compose build
-        working-directory: /home/runner/work/spring-boot-with-docker/spring-boot-with-docker
         run: docker compose build       
 
       - name: Update dependency graph
