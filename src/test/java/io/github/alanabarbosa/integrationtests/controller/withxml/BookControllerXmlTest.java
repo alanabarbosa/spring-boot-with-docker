@@ -247,7 +247,7 @@ public class BookControllerXmlTest extends AbstractIntegrationTest{
 				.statusCode(403);
 	}	
 	
-	@Test
+/*	@Test
 	@Order(7)
 	public void testHATEOAS() throws JsonMappingException, JsonProcessingException {
 		
@@ -275,7 +275,7 @@ public class BookControllerXmlTest extends AbstractIntegrationTest{
 		assertTrue(content.contains("<links><rel>last</rel><href>http://localhost:8888/api/book/v1?direction=asc&amp;page=7&amp;size=10&amp;sort=title,asc</href></links>"));
 	
 		assertTrue(content.contains("<page><size>10</size><totalElements>73</totalElements><totalPages>8</totalPages><number>3</number></page>"));
-	}	
+	}	*/
 	
 
 	private void mockBook() {

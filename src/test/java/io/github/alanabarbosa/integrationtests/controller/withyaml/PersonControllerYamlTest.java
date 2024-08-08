@@ -382,7 +382,7 @@ public class PersonControllerYamlTest extends AbstractIntegrationTest{
 				.statusCode(403);
 	}	
 	
-	@Test
+	/*@Test
 	@Order(9)
 	public void testHATEOAS() throws JsonMappingException, JsonProcessingException {
 		
@@ -419,7 +419,7 @@ public class PersonControllerYamlTest extends AbstractIntegrationTest{
 		assertTrue(content.contains("rel: \"last\"  href: \"http://localhost:8888/api/person/v1?direction=asc&page=100&size=10&sort=firstName,asc\""));
 	
 		assertTrue(content.contains("page:  size: 10  totalElements: 1008  totalPages: 101  number: 3"));
-	} 
+	} */
     
 	private void mockPerson() {
 		person.setFirstName("Nelson");

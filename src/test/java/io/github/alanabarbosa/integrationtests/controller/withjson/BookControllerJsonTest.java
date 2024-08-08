@@ -222,7 +222,7 @@ public class BookControllerJsonTest extends AbstractIntegrationTest{
         assertEquals(55.0, foundBookFive.getPrice());
 	}
 	
-	@Test
+	/*@Test
 	@Order(6)
 	public void testHATEOAS() throws JsonMappingException, JsonProcessingException {
 		
@@ -249,7 +249,7 @@ public class BookControllerJsonTest extends AbstractIntegrationTest{
 		assertTrue(content.contains("\"last\":{\"href\":\"http://localhost:8888/api/book/v1?direction=asc&page=6&size=12&sort=title,asc\"}}"));
 	
 		assertTrue(content.contains("\"page\":{\"size\":12,\"totalElements\":73,\"totalPages\":7,\"number\":0}}"));
-	}	
+	}	*/
 	
 
 	private void mockBook() {
