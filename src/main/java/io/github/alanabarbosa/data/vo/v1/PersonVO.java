@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @JsonPropertyOrder({"id", "first_name", "last_name", "address", "gender"})
 public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
@@ -28,6 +30,7 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
 	private String address;
 	
 	private String gender;
+	@Column(nullable = false)
 	private Boolean enabled;
 	
 	public PersonVO() {

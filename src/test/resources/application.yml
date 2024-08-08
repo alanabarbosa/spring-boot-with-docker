@@ -1,14 +1,14 @@
 server:
   port: 8888
-secutiry:
+security:
   jwt:
     token:
       secret-key: 53ccr37
       expire-length: 3600000
 cors:
-  originPatterns: http://localhost:3000,http://localhost:8080,https://iclassstore.com.br,https://iclassstore.com
+  originPatterns: http://localhost:3000,http://localhost:80,https://iclassstore.com.br,https://iclassstore.com,https://semeru.com.br
 file:
-  upload-dir: /home/runner/work/spring-boot-with-docker/UploadDir
+  upload-dir: ./UploadDir
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

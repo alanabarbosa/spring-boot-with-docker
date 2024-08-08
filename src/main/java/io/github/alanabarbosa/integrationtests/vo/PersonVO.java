@@ -6,6 +6,8 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -23,6 +25,7 @@ public class PersonVO implements Serializable {
 	@JsonProperty("first_name")
 	@XmlElement(name = "first_name")
 	@Column(nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String firstName;
 	
 	@JsonProperty("last_name")

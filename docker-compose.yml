@@ -18,25 +18,23 @@ services:
      - 3308
     networks:
      - alana-network
-
   rest-with-spring-boot:
-    image: alanabarbosa/rest-with-spring-boot
-    restart: always
-    build:
-      context: /home/alanabarbosa/Documents/spring-boot-with-docker
-    working_dir: /app
-    environment:
-      TZ: America/Sao_Paulo
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3308/rest_with_spring_boot?useTimezone=true&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: MyP@ssw0rd123!
-    ports:
-      - 80:80
-    depends_on:
-      - db
-    networks:
-      - alana-network
-
+     image: alanabarbosa/rest-with-spring-boot
+     restart: always
+     build: /home/alanabarbosa/Documents/spring-boot-with-docker
+     working_dir: /home/alanabarbosa/Documents/spring-boot-with-docker
+     environment:
+       TZ: America/Sao_Paulo
+       SPRING.DATASOURCE.URL: jdbc:mysql://db:3308/rest_with_spring_boot?useTimezone=true&serverTimezone=UTC
+       SPRING.DATASOURCE.USERNAME: root
+       SPRING.DATASOURCE.PASSWORD: MyP@ssw0rd123!
+     ports:
+       - 80:80
+     command: mvn spring-boot:run
+     depends_on:
+       - db
+     networks:
+       - alana-network
 networks:
   alana-network:
     driver: bridge
