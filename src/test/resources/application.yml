@@ -8,7 +8,8 @@ security:
 cors:
   originPatterns: http://localhost:3000,http://localhost:8080,https://iclassstore.com.br,https://iclassstore.com
 file:
-  upload-dir: ./UploadDir
+  #upload-dir: ./UploadDir
+  upload-dir: /home/runner/with/UploadDir
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
