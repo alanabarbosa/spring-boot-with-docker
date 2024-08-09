@@ -22,8 +22,11 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '19'
-          distribution: 'adopt'
+          distribution: 'temurin'
           cache: maven
+
+      - name: Run Tests
+        run: mvn test -X
 
       - name: Build Application JAR
         working-directory: ./
