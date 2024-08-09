@@ -44,23 +44,7 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest{
 		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		
 		person = new PersonVO();
-	}
-	
-/*	@AfterEach
-	public void cleanUp() {
-	    if (person.getId() != null) {
-	        given()
-	            .spec(specification)
-	            .when()
-	            .delete("/api/person/v1/{id}", person.getId())
-	            .then()
-	            .statusCode(204);
-	    } else {
-	        // Log ou lidar com a situação onde o ID é nulo
-	        System.err.println("ID cannot be null for cleanup.");
-	    }
-	}*/
-
+	}	
 	
 	@Test
 	@Order(0)
@@ -93,7 +77,7 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest{
 	@Test
 	@Order(1)
 	public void testCreate() throws JsonMappingException, JsonProcessingException {
-		mockPerson();		
+		mockPerson();
 		
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
@@ -111,13 +95,14 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest{
 		person = persistedPerson;
 		
 		assertNotNull(persistedPerson);
+		
 		assertNotNull(persistedPerson.getId());
 		assertNotNull(persistedPerson.getFirstName());
 		assertNotNull(persistedPerson.getLastName());
 		assertNotNull(persistedPerson.getAddress());
 		assertNotNull(persistedPerson.getGender());
 		
-		assertTrue(persistedPerson.getId() > 0, "ID should be greater than 0");
+		assertTrue(persistedPerson.getId() > 0);
 		
 		assertEquals("Richard", persistedPerson.getFirstName());
 		assertEquals("Stallman", persistedPerson.getLastName());
@@ -126,10 +111,10 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest{
 	}
 
 	@Test
-	@Order(3)
+	@Order(2)
 	public void testFindById() throws JsonMappingException, JsonProcessingException {
 		mockPerson();
-			
+		
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
 					.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_ICLASS)
@@ -160,12 +145,26 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest{
 		assertEquals("New York City, New York, US", persistedPerson.getAddress());
 		assertEquals("Male", persistedPerson.getGender());
 	}
+	
+	@Test
+	@Order(3)
+	public void testDelete() throws JsonMappingException, JsonProcessingException {
+
+		given().spec(specification)
+			.contentType(TestConfigs.CONTENT_TYPE_JSON)
+				.pathParam("id", person.getId())
+				.when()
+				.delete("{id}")
+			.then()
+				.statusCode(204);
+	}	
 
 	private void mockPerson() {
 		person.setFirstName("Richard");
 		person.setLastName("Stallman");
 		person.setAddress("New York City, New York, US");
 		person.setGender("Male");
+		person.setEnabled(true);
 	}
 
 }

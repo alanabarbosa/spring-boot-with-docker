@@ -1,9 +1,9 @@
 server:
   port: 80
 cors:
-  originPatterns: http://localhost:3000,http://localhost:80,https://iclassstore.com.br,https://iclassstore.com,https://semeru.com.br
+  originPatterns: http://localhost:3000,http://localhost:8080,https://iclassstore.com.br,https://iclassstore.com
 file:
-  upload-dir: /home/alanabarbosa/Documents/UploadDir  
+  upload-dir: ./UploadDir
 security:
   jwt:
     token:
