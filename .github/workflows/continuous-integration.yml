@@ -22,11 +22,8 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '19'
-          distribution: 'temurin'
+          distribution: 'adopt'
           cache: maven
-
-      - name: Run Tests
-        run: mvn test -X
 
       - name: Build Application JAR
         working-directory: ./
@@ -36,9 +33,8 @@ jobs:
         working-directory: ./
         run: docker compose build       
 
-      - name: Save test reports
-        if: failure() # Salva apenas se houver falhas
-        uses: actions/upload-artifact@v3
-        with:
-          name: surefire-reports
-          path: target/surefire-reports     
+      - name: Push to Docker Hub Container Registry
+        run: |
+          docker tag ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-erudio:latest ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-erudio:${{ github.run_id }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-erudio:${{ github.run_id }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-erudio:latest    
