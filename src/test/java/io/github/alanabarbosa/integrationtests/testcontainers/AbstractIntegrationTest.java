@@ -16,13 +16,13 @@ public class AbstractIntegrationTest {
 
 	static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 		
-		public MySQLContainer<?> mysql = new MySQLContainer<>("mysql:8.0.29");
+		static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:8.0.29");
 		
-		public void startContainers() {
+		private static void startContainers() {
 			Startables.deepStart(Stream.of(mysql)).join();
 		}
  
-		public  Map<String, String> createConnectionConfiguration() {
+		private static Map<String, String> createConnectionConfiguration() {
                         // Pode ter uma key incorreta aqui ou algum espaço
 			return Map.of(
 				"spring.datasource.url", mysql.getJdbcUrl(),

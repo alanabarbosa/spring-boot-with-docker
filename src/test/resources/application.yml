@@ -6,7 +6,7 @@ security:
       secret-key: 53ccr37
       expire-length: 3600000
 cors:
-  originPatterns: http://localhost:3000,http://localhost:8080,https://iclassstore.com.br,https://iclassstore.com
+  originPatterns: http://localhost:3000,http://localhost:80,https://iclassstore.com.br,https://iclassstore.com
 file:
   upload-dir: ./UploadDir
 spring:
