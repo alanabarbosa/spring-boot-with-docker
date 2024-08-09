@@ -36,5 +36,9 @@ jobs:
         working-directory: ./
         run: docker compose build       
 
-      - name: Update dependency graph
-        uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+      - name: Save test reports
+        if: failure() # Salva apenas se houver falhas
+        uses: actions/upload-artifact@v3
+        with:
+          name: surefire-reports
+          path: target/surefire-reports     
