@@ -29,14 +29,20 @@ jobs:
         working-directory: ./
         run: mvn clean package -e -X
 
-      - name: Build Application JAR
-        working-directory: ./
-        run: mvn clean package
-
       - name: Docker compose build
         working-directory: ./
         run: docker compose build
-        
+
+      - name: Run Docker Compose
+        working-directory: ./
+        run: docker compose up -d
+
+      - name: Wait for the Application to Start
+        run: sleep 30 # Adjust the time if needed
+
+      - name: Test Application
+        run: curl --fail http://localhost:80 || exit 1
+
       - name: Archive Test Reports
         if: failure()
         uses: actions/upload-artifact@v3
@@ -48,4 +54,9 @@ jobs:
         run: |
           docker tag ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot:latest ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot:${{ github.run_id }}
           docker push ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot:${{ github.run_id }}
-          docker push ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot:latest    
+          docker push ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot:latest
+
+      - name: Tear Down Docker Compose
+        if: always()
+        working-directory: ./
+        run: docker compose down
