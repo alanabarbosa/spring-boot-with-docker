@@ -54,7 +54,7 @@ public class BookControllerJsonTest extends AbstractIntegrationTest{
 	@Order(0)
 	public void authorization() throws JsonMappingException, JsonProcessingException {
         AccountCredentialsVO user = new AccountCredentialsVO();
-        user.setUsername("alana");
+        user.setUsername("leandro");
         user.setPassword("coffe123");
 		
         var token =
