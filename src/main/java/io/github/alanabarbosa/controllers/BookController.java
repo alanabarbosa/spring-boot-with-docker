@@ -30,7 +30,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/book/v1")
-@Tag(name = "Book", description = "Endpoints for Managing People")
+@Tag(name = "Book", description = "Endpoints for Managing Books")
 public class BookController {
 	
 	@Autowired
@@ -39,7 +39,7 @@ public class BookController {
 	@GetMapping(produces = { MediaType.APPLICATION_JSON, 
 			MediaType.APPLICATION_XML,
 			MediaType.APPLICATION_YML })
-	@Operation(summary = "Finds all Book", description = "Finds all Book",
+	@Operation(summary = "Finds all Book", description = "Finds all Books",
 			tags = {"Book"},
 			responses = {
 				@ApiResponse(description = "Success", responseCode = "200,", 
