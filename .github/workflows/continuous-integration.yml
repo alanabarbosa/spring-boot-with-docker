@@ -1,9 +1,9 @@
 name: Continuos Integration with Github Actions
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "fixed/error" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "fixed/error" ]
 jobs:
   build:
     runs-on: ubuntu-latest
